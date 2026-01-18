@@ -1,5 +1,5 @@
 ---
-title: Mastering Activation Mapping: Choosing the Window of Interest
+title: "Mastering Activation Mapping: Choosing the Window of Interest"
 author: Grace Li
 pubDatetime: 2026-01-18T14:30:00Z
 postSlug: activation-mapping-window-of-interest

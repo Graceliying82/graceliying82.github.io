@@ -37,7 +37,7 @@ Here are **3 Methods** to predict the future.
 
 ---
 
-### Method 1: The "Let It Crash" Method (My Favorite) 💥
+### Method 1: The "Let It Crash" Method (My Favorite)
 
 This is the easiest way. Don't write the `try-except` block yet. Just run the code and **let it fail**.
 
@@ -70,7 +70,7 @@ except KeyError:
 
 ---
 
-### Method 2: The "Code Detective" Method 🕵️‍♀️
+### Method 2: The "Code Detective" Method
 
 Even without running code, the **syntax** often gives you hints.
 
@@ -81,11 +81,26 @@ Even without running code, the **syntax** often gives you hints.
 
 ---
 
-### Method 3: The "RTFM" Method 📚
+### Method 3: The "RTFM" Method
 
 **R**ead **T**he **F**riendly **M**anual.
 
 Documentation usually tells you what errors a function raises. For example, the Python docs for requests say: *"In the event of a network problem (e.g. DNS failure, refused connection, etc), Requests will raise a `ConnectionError` exception."*
+
+## 📝 Cheat Sheet: Common Exceptions
+
+Reference this table for the most common errors you'll encounter.
+
+| Action | Likely Exception | Why? |
+| :--- | :--- | :--- |
+| `my_dict["missing_key"]` | `KeyError` | The key doesn't exist in the dictionary. |
+| `my_list[100]` | `IndexError` | You tried to grab an item at an index that doesn't exist. |
+| `int("hello")` | `ValueError` | The function received the right type (string) but wrong value. |
+| `print(unknown_var)` | `NameError` | You haven't defined this variable yet. |
+| `None.some_method()` | `AttributeError` | You're trying to use a method on `None` (very common!). |
+| `10 / 0` | `ZeroDivisionError` | You can't divide by zero. |
+| `open("ghost.txt")` | `FileNotFoundError` | The file isn't where you think it is. |
+| `import fake_module` | `ModuleNotFoundError`| You forgot to `pip install` or misspelled the name. |
 
 ## Summary
 

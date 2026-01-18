@@ -24,7 +24,7 @@ print("Did we get here? Yes.")
 
 It works! But then you finish your code, deploy it, and suddenly your console is **flooded** with "Checking variable x..." messages that you forgot to delete. Or worse, you have an error in production, but you can't see what happened because you deleted all those print statements to clean up!
 
-**There is a better way.** Enter: **The `logging` module.** 🦸‍♀️
+**There is a better way.** Enter: **The `logging` module.**
 
 ---
 
@@ -117,9 +117,9 @@ logging.basicConfig(level=logging.DEBUG)
 ```
 *Result:* You see EVERYTHING. Every tiny calculation. 
 
-You didn't have to add or delete a single print statement. You just turned the volume knob. 🎛️
+You didn't have to add or delete a single print statement. You just turned the volume knob.
 
-## Pro Tip: Dynamic Logging (The Magic Trick) 🎩
+## Pro Tip: Dynamic Logging (The Magic Trick)
 
 "But wait!" you say. "I still have to change the code to switch between `WARNING` and `DEBUG`!"
 
@@ -141,7 +141,7 @@ Now, you can change the behavior just by how you **run** the program:
 *   **Normal Run:** `python my_app.py` → (Defaults to INFO)
 *   **Debug Run:** `LOG_LEVEL=DEBUG python my_app.py` → (Shows all debug logs!)
 
-No code changes required. Just pure magic. ✨
+No code changes required. Just pure magic.
 
 ---
 
@@ -151,4 +151,4 @@ No code changes required. Just pure magic. ✨
 *   **Logging** is for the APP (long-term health).
 *   Use `INFO` for "it's working", and `ERROR` for "it broke".
 
-Happy Coding! 🚀
+Happy Coding!

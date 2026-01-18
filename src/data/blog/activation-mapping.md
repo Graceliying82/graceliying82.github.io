@@ -17,7 +17,13 @@ description: A technical guide on selecting the correct Window of Interest (WOI)
 
 Activation mapping is a cornerstone of modern electrophysiology, essential for diagnosing and treating arrhythmias like atrial flutter. However, the quality of an activation map is only as good as the parameters set to create it. One of the most critical—and often misunderstood—parameters is the **Window of Interest (WOI)**.
 
-Recently, I came across an amazing tutorial that broke down this concept with intuitive clarity. In this post, I want to synthesize those insights into a technical reference for choosing the WOI, particularly for complex cases involving slow conduction.
+Recently, I came across an amazing tutorial that broke down this concept with intuitive clarity.
+
+<br>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/CoRDSVjHQVU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<br>
+
+In this post, I want to synthesize those insights into a technical reference for choosing the WOI, particularly for complex cases involving slow conduction.
 
 ## What is the Window of Interest (WOI)?
 

@@ -1,5 +1,5 @@
 ---
-title: "Stop Using Print(): A Teacher's Guide to Python Logging"
+title: "Why Use Logging When Print Works?"
 author: Grace Li
 pubDatetime: 2026-01-18T15:00:00Z
 postSlug: python-logging-vs-print-guide

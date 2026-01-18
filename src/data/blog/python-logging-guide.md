@@ -119,6 +119,30 @@ logging.basicConfig(level=logging.DEBUG)
 
 You didn't have to add or delete a single print statement. You just turned the volume knob. 🎛️
 
+## Pro Tip: Dynamic Logging (The Magic Trick) 🎩
+
+"But wait!" you say. "I still have to change the code to switch between `WARNING` and `DEBUG`!"
+
+Not if you use **Environment Variables**. This is how the pros do it.
+
+```python
+import os
+import logging
+
+# 1. Get the level from the environment (default to INFO if not set)
+env_level = os.getenv("LOG_LEVEL", "INFO").upper()
+
+# 2. Configure logging with that level
+logging.basicConfig(level=env_level)
+```
+
+Now, you can change the behavior just by how you **run** the program:
+
+*   **Normal Run:** `python my_app.py` → (Defaults to INFO)
+*   **Debug Run:** `LOG_LEVEL=DEBUG python my_app.py` → (Shows all debug logs!)
+
+No code changes required. Just pure magic. ✨
+
 ---
 
 ## Summary

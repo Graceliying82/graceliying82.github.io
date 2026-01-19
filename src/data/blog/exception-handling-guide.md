@@ -87,7 +87,7 @@ Even without running code, the **syntax** often gives you hints.
 
 Documentation usually tells you what errors a function raises. For example, the Python docs for requests say: *"In the event of a network problem (e.g. DNS failure, refused connection, etc), Requests will raise a `ConnectionError` exception."*
 
-## 📝 Cheat Sheet: Common Exceptions
+## Cheat Sheet: Common Exceptions
 
 Reference this table for the most common errors you'll encounter.
 

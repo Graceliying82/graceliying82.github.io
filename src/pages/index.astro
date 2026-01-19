@@ -16,7 +16,22 @@ const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+// Filter remaining posts
+const nonFeatured = sortedPosts.filter(({ data }) => !data.featured);
+
+const epPosts = nonFeatured.filter(({ data }) => 
+  data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter"].includes(tag.toLowerCase()))
+);
+
+const pythonPosts = nonFeatured.filter(({ data }) => 
+  data.tags.some(tag => ["python", "coding", "machine learning", "web development", "tutorial"].includes(tag.toLowerCase()))
+);
+
+// Fallback for anything else
+const otherPosts = nonFeatured.filter(({ data }) => 
+  !data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter", "python", "coding", "machine learning", "web development", "tutorial"].includes(tag.toLowerCase()))
+);
 ---
 
 <Layout>
@@ -91,14 +106,39 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     }
 
     {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+      epPosts.length > 0 && (
+        <section id="ep-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Electrophysiology & Cardiology</h2>
           <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
+            {epPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      pythonPosts.length > 0 && (
+        <section id="python-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Python & Development</h2>
+          <ul>
+            {pythonPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      otherPosts.length > 0 && (
+        <section id="other-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Other Posts</h2>
+          <ul>
+            {otherPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
           </ul>
         </section>
       )

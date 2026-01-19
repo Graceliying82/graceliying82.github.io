@@ -15,21 +15,18 @@ import { SOCIALS } from "@/constants";
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 
-// Filter remaining posts
-const nonFeatured = sortedPosts.filter(({ data }) => !data.featured);
-
-const epPosts = nonFeatured.filter(({ data }) => 
+// Filter by Category (Include ALL posts, featured or not)
+const epPosts = sortedPosts.filter(({ data }) => 
   data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter"].includes(tag.toLowerCase()))
 );
 
-const pythonPosts = nonFeatured.filter(({ data }) => 
+const pythonPosts = sortedPosts.filter(({ data }) => 
   data.tags.some(tag => ["python", "coding", "machine learning", "web development", "tutorial"].includes(tag.toLowerCase()))
 );
 
-// Fallback for anything else
-const otherPosts = nonFeatured.filter(({ data }) => 
+// Fallback for anything else not captured above
+const otherPosts = sortedPosts.filter(({ data }) => 
   !data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter", "python", "coding", "machine learning", "web development", "tutorial"].includes(tag.toLowerCase()))
 );
 ---
@@ -87,28 +84,9 @@ const otherPosts = nonFeatured.filter(({ data }) =>
     </section>
 
     {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-b border-border": nonFeatured.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
       epPosts.length > 0 && (
         <section id="ep-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Electrophysiology & Cardiology</h2>
+          <h2 class="text-2xl font-semibold tracking-wide">Cardiac Electrophysiology</h2>
           <ul>
             {epPosts.map(data => (
               <Card variant="h3" {...data} />

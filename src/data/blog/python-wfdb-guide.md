@@ -37,6 +37,67 @@ import os
 wfdb.dl_database('ptbdb', 'data', limit=5, overwrite=False)
 ```
 
+## Exploring Different Databases
+
+PhysioNet hosts dozens of databases. While we used `ptbdb` (PTB Diagnostic ECG Database) above, you can access many others by changing the **slug**:
+
+*   **`mitdb`**: MIT-BIH Arrhythmia Database (The "Hello World" of ECG).
+*   **`bidmc`**: BIDMC Congestive Heart Failure Database.
+*   **`incartdb`**: St. Petersburg INCART 12-lead Arrhythmia Database.
+
+To find more, check the [PhysioNet Index](https://physionet.org/about/database/).
+
+## What Does the Data Look Like?
+
+When you call `rdsamp`, the `fields` dictionary gives you crucial context. Here is what you can expect:
+
+```python
+# signals, fields = wfdb.rdsamp(...)
+print(fields)
+
+# Output Example:
+{
+    'fs': 1000,                  # Sampling frequency (Hz)
+    'sig_len': 38400,            # Total number of samples
+    'n_sig': 12,                 # Number of signals (leads)
+    'base_date': None,
+    'base_time': None,
+    'units': ['mV', 'mV', ...],  # Units for each channel
+    'sig_name': ['i', 'ii', 'iii', 'avr', 'avl', 'avf', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6'],
+    'comments': [
+        'age: 69', 
+        'sex: male', 
+        'clinical diagnosis: myocardial infarction'
+    ]
+}
+```
+
+## Pagination and Handling Large Datasets
+
+Some databases contain thousands of records. Downloading everything at once is slow and fills up your disk. Instead, you can "paginate" by fetching the record list first and downloading in chunks.
+
+```python
+# 1. Get the list of ALL records keys
+all_records = wfdb.get_record_list('ptbdb') # e.g., ['patient001/s0010_re', ...]
+
+print(f"Total records found: {len(all_records)}")
+
+# 2. Define your "page" size
+page_size = 5
+page_number = 1 # 2nd page (0-indexed)
+
+start_idx = page_number * page_size
+end_idx = start_idx + page_size
+
+# 3. Slice the list
+target_records = all_records[start_idx:end_idx]
+
+# 4. Download ONLY those specific records
+wfdb.dl_database('ptbdb', 'data', records=target_records, overwrite=False)
+
+print(f"Downloaded records {start_idx} to {end_idx}")
+```
+
 ## Reading Records
 
 Once downloaded, you can read the data using `rdsamp` (read sample). This function returns two items:

@@ -14,7 +14,7 @@ export const SITE = {
   editPost: {
     enabled: true,
     text: "Edit page",
-    url: "https://github.com/Graceliying82/graceliying82.github.io/edit/main/",
+    url: "https://github.com/Graceliying82/graceliying82.github.io/edit/mainline/",
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"

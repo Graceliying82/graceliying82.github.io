@@ -16,7 +16,11 @@ description: Why Python doesn't use Java-style getters and setters, and how to u
 
 If you come from a Java or C++ background, your instinct when creating a class is likely to make all attributes private and write `getVariable()` and `setVariable()` methods for everything. 
 
-In Python, this is considered an anti-pattern. Python is "consenting adults" language—we prefer simplicity and trust over strict access control. However, there are times when you *do* need to control how data is accessed or modified. This is where the `@property` decorator shines.
+In Python, this is generally unnecessary. Python's philosophy is to keep code simple and readable by using plain variables by default. You should only add protection logic **if and when** it becomes necessary, not for every single attribute upfront.
+
+This might raise a concern: **"If I start with simple variables, won't I have to rewrite my code later if I need validation?"**
+
+The answer is no. This is exactly where the `@property` decorator comes in. It allows you to seamlessly upgrade a simple attribute to a method with logic, without breaking any code that uses your class.
 
 ## The "Java" Way (Avoid This in Python)
 
@@ -108,9 +112,11 @@ except ValueError as e:
 
 ## When to Use @property
 
-You should use `@property` (annotations) only when necessary:
-1.  **Validation**: checking limits (like non-negative age).
-2.  **Computed Attributes**: calculating a value on the fly (e.g., `full_name` from `first` and `last`) without storing it.
-3.  **Laziness**: loading a heavy resource only when it is requested.
+You should **not** use `@property` for every single attribute. If you don't have validation logic, just use a plain public attribute (`self.name`).
 
-If you don't have logic to run, just use a plain public attribute. Keep it simple!
+Only convert to a property if:
+1.  **You need Validation**: e.g., checking for negative numbers.
+2.  **Computed Attributes**: e.g., calculating `full_name` from `first` and `last`.
+3.  **Refactoring**: You need to add logic to legacy code without breaking the API.
+
+Keep it simple by default, and add complexity (validation) only where you actually need it.

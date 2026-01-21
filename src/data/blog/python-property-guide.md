@@ -114,9 +114,11 @@ except ValueError as e:
 
 **No.**
 
-*   **Read-Only**: If you define *only* the `@property` (getter) and skip the setter, the attribute becomes **read-only**. Python will raise an `AttributeError` if you try to modify it.
-*   **Read-Write**: If you define **both**, you get full read-write access.
-*   **Setter Only?**: **Impossible.** You *cannot* define a setter without a getter. The `@name.setter` decorator requires the property `@property` to exist first.
+| Configuration | Result | Note |
+| :--- | :--- | :--- |
+| **Getter Only** (`@property`) | **Read-Only** Attribute | Great for constants or computed values. |
+| **Getter + Setter** | **Read-Write** Attribute | The standard way to add validation. |
+| **Setter Only** | **Impossible** | Syntax limitation. You must define the getter first. |
 
 ```python
 class Circle:

@@ -110,6 +110,28 @@ except ValueError as e:
     print(e)
 ```
 
+## Do I Need Both Getter and Setter?
+
+**No.**
+
+*   **Read-Only**: If you define *only* the `@property` (getter) and skip the setter, the attribute becomes **read-only**. Python will raise an `AttributeError` if you try to modify it.
+*   **Read-Write**: If you define **both**, you get full read-write access.
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def area(self):
+        """I am read-only! You cannot set me."""
+        return 3.14 * (self.radius ** 2)
+
+c = Circle(5)
+print(c.area) # Works: 78.5
+# c.area = 100 # Error: AttributeError: can't set attribute
+```
+
 ## When to Use @property
 
 You should **not** use `@property` for every single attribute. If you don't have validation logic, just use a plain public attribute (`self.name`).

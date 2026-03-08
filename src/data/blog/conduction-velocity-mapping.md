@@ -50,15 +50,13 @@ Taking all that raw vector math and turning it into something a physician can in
     *   Where the lines are widely spaced, the wave is traveling *fast*. 
     *   Where the lines are tightly crowded together, the wave is traveling *slowly* (like traffic bunching up).
     
-*   **Vector Maps:** The software overlays tiny arrows across the 3D heart model. The arrows point in the direction of the wavefront, and their size or color indicates speed. This instantly highlights the pathway of a re-entrant loop.
+*   **Vector Maps:** The software overlays tiny arrows across the 3D heart model. The arrows point in the direction of the wavefront, and their size or color indicates speed. In systems like **Biosense Webster's CARTO 3**, this instantly highlights the pathway of a re-entrant loop by showing "velocity vectors" crowding around a slow-conduction area.
 
-*(Vector Map image to be inserted here)*
-*Figure 2: A vector map visualizing the direction and magnitude of the electrical wavefront. (Placeholder - replace with CardioMap vector snapshot)*
+> **Clinical Example:** In a study published in *AHA Circulation: Arrhythmia and Electrophysiology*, researchers demonstrated how these vectors can pinpoint the "critical isthmus" in complex atrial tachycardia by showing a sudden directional shift and speed reduction.
 
-*   **Ripple Mapping & Animation:** Dynamic animations show the wavefront moving across the tissue in real-time or slow-motion. Instead of interpreting static colors, the human brain easily tracks the animated "ripples," making blind alleys and slow zones visually obvious.
+*   **Ripple Mapping & Animation:** Instead of just interpreting static colors, dynamic animations show the wavefront moving across the tissue in real-time. In **Ripple Mapping** (introduced commercially via specialized mapping software), electrogram voltages are displayed as "bars" that protrude from the 3D surface. As the activation moves, these bars rise and fall, creating a ripple effect that the human brain can track much more naturally than a spectrum of colors.
 
-*(Ripple Mapping image to be inserted here)*
-*Figure 3: Ripple mapping dynamic activation tracking. (Placeholder - replace with CardioMap ripple snapshot)*
+> **Clinical Example:** This is particularly effective for mapping "fractionated" signals in scar tissue—where traditional maps might just show a blur, ripple mapping shows the exact path the signal takes through the surviving channels of healthy muscle.
 
 ## Looking Ahead
 

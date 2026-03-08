@@ -52,12 +52,12 @@ Taking all that raw vector math and turning it into something a physician can in
     
 *   **Vector Maps:** The software overlays tiny arrows across the 3D heart model. The arrows point in the direction of the wavefront, and their size or color indicates speed. This instantly highlights the pathway of a re-entrant loop.
 
-![Vector Map Example](../../assets/images/vector_map_placeholder.png)
+*(Vector Map image to be inserted here)*
 *Figure 2: A vector map visualizing the direction and magnitude of the electrical wavefront. (Placeholder - replace with CardioMap vector snapshot)*
 
 *   **Ripple Mapping & Animation:** Dynamic animations show the wavefront moving across the tissue in real-time or slow-motion. Instead of interpreting static colors, the human brain easily tracks the animated "ripples," making blind alleys and slow zones visually obvious.
 
-![Ripple Mapping Example](../../assets/images/ripple_map_placeholder.png)
+*(Ripple Mapping image to be inserted here)*
 *Figure 3: Ripple mapping dynamic activation tracking. (Placeholder - replace with CardioMap ripple snapshot)*
 
 ## Looking Ahead

@@ -31,7 +31,7 @@ By mapping exactly how the velocity propagates across the tissue, we can pinpoin
 
 Once the critical isthmus is identified, physicians can target it for **catheter ablation**—delivering RF energy to destroy that tiny corridor, effectively breaking the circuit and restoring normal rhythm.
 
-![Cardiac Electrophysiology Mapping - Isochronal Map](../../assets/images/cardiac_velocity_map.png)
+![Cardiac Electrophysiology Mapping - Isochronal Map](../../../assets/images/cardiac_velocity_map.png)
 *Figure 1: An isochronal map showing tightly crowded contour lines indicating a slow conduction zone. (Image generated via Gemini 3.0)*
 
 ## How Do We Actually Calculate Velocity? (The Engineering Side)

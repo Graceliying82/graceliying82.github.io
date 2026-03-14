@@ -22,13 +22,18 @@ const epPosts = sortedPosts.filter(({ data }) =>
   data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter"].includes(tag.toLowerCase()))
 );
 
+const mlPosts = sortedPosts.filter(({ data }) =>
+  data.tags.some(tag => ["machine-learning", "ai", "neural-networks", "machine learning"].includes(tag.toLowerCase()))
+);
+
 const pythonPosts = sortedPosts.filter(({ data }) => 
-  data.tags.some(tag => ["python", "coding", "machine learning", "web development", "tutorial"].includes(tag.toLowerCase()))
+  data.tags.some(tag => ["python", "coding", "web development", "tutorial"].includes(tag.toLowerCase())) &&
+  !data.tags.some(tag => ["machine-learning", "ai", "neural-networks", "machine learning"].includes(tag.toLowerCase()))
 );
 
 // Fallback for anything else not captured above
 const otherPosts = sortedPosts.filter(({ data }) => 
-  !data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter", "python", "coding", "machine learning", "web development", "tutorial"].includes(tag.toLowerCase()))
+  !data.tags.some(tag => ["electrophysiology", "cardiology", "arrhythmia", "atrial flutter", "python", "coding", "machine learning", "machine-learning", "ai", "neural-networks", "web development", "tutorial"].includes(tag.toLowerCase()))
 );
 ---
 
@@ -36,6 +41,7 @@ const otherPosts = sortedPosts.filter(({ data }) =>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
+      <h1 class="text-3xl font-bold sm:text-5xl">
         Hi, I'm Grace
       </h1>
       <a
@@ -74,7 +80,6 @@ const otherPosts = sortedPosts.filter(({ data }) =>
         </LinkButton>.
       </p>
       {
-        // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
           <div class="mt-4 flex max-sm:flex-col sm:items-center">
             <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
@@ -98,9 +103,32 @@ const otherPosts = sortedPosts.filter(({ data }) =>
     {
       epPosts.length > 0 && (
         <section id="ep-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Cardiac Electrophysiology</h2>
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold tracking-wide">Cardiac Electrophysiology</h2>
+            <LinkButton href="/tags/electrophysiology/" class="text-accent hover:underline">
+              View More
+            </LinkButton>
+          </div>
           <ul>
-            {epPosts.map(data => (
+            {epPosts.slice(0, 3).map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      mlPosts.length > 0 && (
+        <section id="ml-posts" class="pt-12 pb-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold tracking-wide">Machine Learning & Neural Networks</h2>
+            <LinkButton href="/tags/machine-learning/" class="text-accent hover:underline">
+              View More
+            </LinkButton>
+          </div>
+          <ul>
+            {mlPosts.slice(0, 3).map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>
@@ -111,9 +139,14 @@ const otherPosts = sortedPosts.filter(({ data }) =>
     {
       pythonPosts.length > 0 && (
         <section id="python-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Python & Development</h2>
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold tracking-wide">Python & Development</h2>
+            <LinkButton href="/tags/python/" class="text-accent hover:underline">
+              View More
+            </LinkButton>
+          </div>
           <ul>
-            {pythonPosts.map(data => (
+            {pythonPosts.slice(0, 3).map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>
@@ -126,7 +159,7 @@ const otherPosts = sortedPosts.filter(({ data }) =>
         <section id="other-posts" class="pt-12 pb-6">
           <h2 class="text-2xl font-semibold tracking-wide">Other Posts</h2>
           <ul>
-            {otherPosts.map(data => (
+            {otherPosts.slice(0, 3).map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>

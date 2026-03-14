@@ -11,7 +11,7 @@ tags:
   - fundamentals
   - math
   - tutorial
-description: Before diving into neural networks, you have to master the basics. Here’s a breakdown of the two most important building blocks in machine learning: Linear and Logistic Regression.
+description: "Before diving into neural networks, you have to master the basics. Here’s a breakdown of the two most important building blocks in machine learning: Linear and Logistic Regression."
 ---
 
 Welcome to the first post in my new series on Machine Learning and Neural Networks! Before we start building complex brains with billions of parameters, we need to understand the fundamental ways a machine actually "learns" from data. 

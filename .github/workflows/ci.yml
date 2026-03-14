@@ -12,6 +12,9 @@ on:
       - reopened
   workflow_call:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     name: Code standards & build
@@ -20,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [24]
 
     steps:
       - name: "☁️ Checkout repository"

@@ -42,7 +42,7 @@ The heart beats because of electrical impulses. In a healthy heart, a signal ori
 
 **Cardiac electrophysiology (EP) mapping** is a clinical procedure in which a cardiologist inserts thin, flexible catheters into the heart through blood vessels and records the electrical activity from inside the heart chambers. The goal is to create a **3D map** of the heart surface annotated with electrical timing data — revealing exactly where and when the abnormal activity originates, so it can be targeted with ablation (tissue destruction via heat or cold).
 
-Modern EP mapping systems — such as Rhythmia (Boston Scientific), CARTO (Biosense Webster), and EnSite (Abbott) — combine real-time 3D catheter tracking with multi-channel signal recording to build these maps automatically during the procedure.
+Modern EP mapping systems — such as [OPAL HDx (formerly Rhythmia)](https://www.bostonscientific.com/us/en/healthcare-professionals/products/mapping-and-navigation-systems/opal-hdx-mapping-system/fp00000293.html) from Boston Scientific, CARTO (Biosense Webster), and EnSite (Abbott) — combine real-time 3D catheter tracking with multi-channel signal recording to build these maps automatically during the procedure.
 
 ---
 
@@ -53,7 +53,7 @@ Modern EP mapping systems — such as Rhythmia (Boston Scientific), CARTO (Biose
 A mapping catheter is a thin flexible tube (typically 2–4 mm in diameter) with multiple electrodes embedded near its tip. As the cardiologist maneuvers the catheter to touch different regions of the heart wall, each electrode records a local electrical signal.
 
 Types of mapping catheters:
-- **Basket catheters** (e.g. Rhythmia IntellaMap Orion): spherical cage with 64 electrodes that expands inside a chamber, enabling high-density mapping with thousands of points in just a few minutes.
+- **Basket catheters** (e.g. [OPAL HDx™](https://www.bostonscientific.com/us/en/healthcare-professionals/products/mapping-and-navigation-systems/opal-hdx-mapping-system/fp00000293.html) formerly Rhythmia): spherical cage with 64 electrodes that expands inside a chamber, enabling high-density mapping with thousands of points in just a few minutes.
 - **Multi-electrode catheters** (e.g. PentaRay, HD Grid): designs with 16–20 electrodes (PentaRay: 20 electrodes on 5 splines; HD Grid: 16 electrodes in a 4x4 array) that record over a small area.
 - **Point-by-point catheters** (e.g. CARTO SmartTouch): one contact point at a time, moved manually.
 
@@ -176,7 +176,9 @@ LAT_ms       = diff_seconds × 1000               # 0.069 × 1000 = 69 ms
 ```
 
 Or in one line:
-$$\text{LAT} = \frac{\text{mapAnnot} - \text{refAnnot}}{\text{f}_s} \times 1000$$
+```
+LAT = ((mapAnnot - refAnnot) / fs) * 1000
+```
 
 This formula is **sample-rate agnostic**. Whether the system samples at 1000 Hz, 1200 Hz, or 2000 Hz, the formula always produces the correct LAT in milliseconds.
 
@@ -202,7 +204,7 @@ The number of measurement points is **finite and constrained by the procedure**.
 
 | System | Technology | Typical points |
 |---|---|---|
-| Rhythmia (Boston Scientific) | Basket catheter, automated | 2,000–10,000 |
+| OPAL HDx (BSC) | Basket catheter, automated | 2,000–10,000 |
 | CARTO 3 (Biosense Webster) | Point-by-point, magnetic tracking | 100–500 |
 | EnSite Velocity (Abbott) | Non-contact or multi-electrode | 500–3,000 |
 
@@ -214,10 +216,10 @@ Meanwhile, the 3D **mesh surface** reconstructed from the same catheter movement
 
 The cardiologist frequently revisits the same anatomical location — either intentionally (to confirm a reading) or because catheter movement is imprecise. How duplicate points are handled varies by system:
 
-### BSC (Rhythmia) / Abbott (EnSite) - High-Density
+### BSC (OPAL HDx) / Abbott (EnSite) - High-Density
 
-- These systems often use a **Voxel-based** approach (e.g., [Rhythmia Voxel Mode](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/rhythmia-hdx-mapping-system.html)).
-- Data is collected automatically at high speed (Rhythmia) or via multi-electrode sweeps (EnSite).
+- These systems often use a **Voxel-based** approach (e.g., [Voxel-based editing in OPAL HDx](https://www.bostonscientific.com/us/en/healthcare-professionals/products/mapping-and-navigation-systems/opal-hdx-mapping-system/fp00000293.html)).
+- Data is collected automatically at high speed (OPAL HDx) or via multi-electrode sweeps (EnSite).
 - Points are grouped into **spatial bins (voxels)** on the 3D mesh.
 - The system computes a **median or weighted average** LAT per bin to reduce noise.
 - Outliers are automatically rejected using quality metrics like cycle length stability and **morphology matching**.
@@ -241,18 +243,25 @@ After collecting LAT values at a few hundred to a few thousand electrode positio
 
 This is a **spatial interpolation** problem.
 
-The simplest approach. For any unsampled mesh vertex $v$, the estimated LAT is a weighted average of all nearby electrode measurements, where closer electrodes get higher weight:
+The simplest approach. For any unsampled mesh vertex `v`, the estimated LAT is a weighted average of all nearby electrode measurements, where closer electrodes get higher weight:
 
-$$\text{LAT}(v) = \frac{\sum w_i \times \text{LAT}_i}{\sum w_i}$$
+```
+LAT(v) = sum(wi * LATi) / sum(wi)
+```
 
-where $w_i = \frac{1}{\text{dist}(v, \text{electrode}_i)^p}$
+where
+```
+wi = 1 / (dist(v, electrode_i)^p)
+```
 
 - `p = 2` is common (inverse square distance)
 - Simple and fast, but can produce "bullseye" artifacts around isolated points
 
 A more sophisticated method. Fits a smooth continuous function through all measurement points:
 
-$$\text{LAT}(v) = \sum \lambda_i \times \phi(||v - \text{electrode}_i||)$$
+```
+LAT(v) = sum(λi * φ(||v - electrode_i||))
+```
 
 Where `φ` is a radial basis function (e.g. thin-plate spline, multiquadric). RBF produces smoother maps and handles irregular sampling better than IDW.
 
@@ -386,7 +395,7 @@ Understanding the underlying math—from the simple subtraction of sample indice
 - Bhargava M, et al. "Impact of New Generation of Mapping Systems on Ablation." *Cardiology Clinics*, 2009
 
 ### EP Mapping Systems (vendor documentation / white papers)
-- [Boston Scientific Rhythmia HDx Mapping System](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/rhythmia-hdx-mapping-system.html)
+- [Boston Scientific OPAL HDx™ Mapping System (formerly Rhythmia HDx™)](https://www.bostonscientific.com/us/en/healthcare-professionals/products/mapping-and-navigation-systems/opal-hdx-mapping-system/fp00000293.html)
 - [Biosense Webster CARTO 3 System](https://www.biosensewebster.com/our-solutions/mapping-navigation/carto-3-system.html)
 - [Abbott EnSite X EP System](https://www.cardiovascular.abbott/us/en/hcp/products/electrophysiology/mapping-and-navigation/ensite-x-ep-system.html)
 

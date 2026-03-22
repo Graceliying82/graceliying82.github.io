@@ -176,7 +176,7 @@ LAT_ms       = diff_seconds × 1000               # 0.069 × 1000 = 69 ms
 ```
 
 Or in one line:
-$$LAT = \frac{mapAnnot - referenceAnnot}{f_s} \times 1000$$
+$$\text{LAT} = \frac{\text{mapAnnot} - \text{refAnnot}}{\text{f}_s} \times 1000$$
 
 This formula is **sample-rate agnostic**. Whether the system samples at 1000 Hz, 1200 Hz, or 2000 Hz, the formula always produces the correct LAT in milliseconds.
 
@@ -241,16 +241,16 @@ This is a **spatial interpolation** problem.
 
 The simplest approach. For any unsampled mesh vertex $v$, the estimated LAT is a weighted average of all nearby electrode measurements, where closer electrodes get higher weight:
 
-$$LAT(v) = \frac{\sum w_i \times LAT_i}{\sum w_i}$$
+$$\text{LAT}(v) = \frac{\sum w_i \times \text{LAT}_i}{\sum w_i}$$
 
-where $w_i = \frac{1}{dist(v, electrode_i)^p}$
+where $w_i = \frac{1}{\text{dist}(v, \text{electrode}_i)^p}$
 
 - `p = 2` is common (inverse square distance)
 - Simple and fast, but can produce "bullseye" artifacts around isolated points
 
 A more sophisticated method. Fits a smooth continuous function through all measurement points:
 
-$$LAT(v) = \sum \lambda_i \times \phi(||v - electrode_i||)$$
+$$\text{LAT}(v) = \sum \lambda_i \times \phi(||v - \text{electrode}_i||)$$
 
 Where `φ` is a radial basis function (e.g. thin-plate spline, multiquadric). RBF produces smoother maps and handles irregular sampling better than IDW.
 

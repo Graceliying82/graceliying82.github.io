@@ -216,16 +216,18 @@ The cardiologist frequently revisits the same anatomical location — either int
 
 ### BSC (Rhythmia) / Abbott (EnSite) - High-Density
 
-- Collects thousands of points automatically per beat (Rhythmia) or via multi-electrode sweeps.
-- Groups points into **spatial bins**.
-- Computes a **median or weighted average** LAT per bin.
-- Automatically rejects outliers using quality metrics (cycle length stability, morphology matching).
+- These systems often use a **Voxel-based** approach (e.g., [Rhythmia Voxel Mode](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/rhythmia-hdx-mapping-system.html)).
+- Data is collected automatically at high speed (Rhythmia) or via multi-electrode sweeps (EnSite).
+- Points are grouped into **spatial bins (voxels)** on the 3D mesh.
+- The system computes a **median or weighted average** LAT per bin to reduce noise.
+- Outliers are automatically rejected using quality metrics like cycle length stability and **morphology matching**.
 
 ### CARTO (Point-by-Point)
 
-- Accepts points within a configurable spatial tolerance (typically 2–3 mm).
-- Displays all points, but uses the **highest-quality** point for the color map.
-- Quality criteria: signal amplitude, catheter stability, contact force (if using force-sensing catheters), and respiratory phase gating.
+- Traditionally focuses on high-precision, point-by-point data acquisition (e.g., [CARTO 3 System](https://www.jnjmedtech.com/en-US/product/carto-3-system)).
+- Accepts points within a configurable spatial tolerance (typically [2–3 mm in clinical practice](https://pubmed.ncbi.nlm.nih.gov/20929532/)).
+- Uses the **highest-quality** point for the color map based on a **Smart Index** or stability score.
+- Quality criteria: signal amplitude, catheter stability (**Stability+**), contact force, and respiratory phase gating.
 
 ### Why this matters
 

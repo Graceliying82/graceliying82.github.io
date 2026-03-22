@@ -143,11 +143,11 @@ It answers the question: **"How late does this spot on the heart wall wake up, r
 The heart beats continuously. Each beat has a slightly different absolute timing. By anchoring all measurements to the **same reference event** (e.g. the reference catheter signal, or the pacing stimulus), LATs from different beats and different catheter positions become directly comparable.
 
 ```
-Reference fires: t = 0 ms
+Reference fires (e.g. CS catheter): t = 0 ms
   │
-  ├── Location A: activates at t = 45 ms  → LAT = 45 ms  (early)
-  ├── Location B: activates at t = 83 ms  → LAT = 83 ms
-  └── Location C: activates at t = 120 ms → LAT = 120 ms (late)
+  ├── Location A: activates at t = -45 ms → LAT = -45 ms (early)
+  ├── Location B: activates at t = 20 ms  → LAT = 20 ms
+  └── Location C: activates at t = 100 ms → LAT = 100 ms (late)
 ```
 
 These LAT values, combined with the 3D position of each electrode, form the raw data for an activation map.
@@ -384,9 +384,9 @@ Understanding the underlying math—from the simple subtraction of sample indice
 - Bhargava M, et al. "Impact of New Generation of Mapping Systems on Ablation." *Cardiology Clinics*, 2009
 
 ### EP Mapping Systems (vendor documentation / white papers)
+- [Boston Scientific Rhythmia HDx Mapping System](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/rhythmia-hdx-mapping-system.html)
 - [Biosense Webster CARTO 3 System](https://www.biosensewebster.com/our-solutions/mapping-navigation/carto-3-system.html)
 - [Abbott EnSite X EP System](https://www.cardiovascular.abbott/us/en/hcp/products/electrophysiology/mapping-and-navigation/ensite-x-ep-system.html)
-- [Boston Scientific Rhythmia HDx Mapping System](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/rhythmia-hdx-mapping-system.html)
 
 ### Open Data / Research Tools
 - [OpenEP Project](https://openep.io) — open-source framework and datasets for EP mapping research

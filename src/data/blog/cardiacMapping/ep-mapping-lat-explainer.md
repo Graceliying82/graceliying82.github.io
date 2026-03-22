@@ -42,7 +42,7 @@ The heart beats because of electrical impulses. In a healthy heart, a signal ori
 
 **Cardiac electrophysiology (EP) mapping** is a clinical procedure in which a cardiologist inserts thin, flexible catheters into the heart through blood vessels and records the electrical activity from inside the heart chambers. The goal is to create a **3D map** of the heart surface annotated with electrical timing data — revealing exactly where and when the abnormal activity originates, so it can be targeted with ablation (tissue destruction via heat or cold).
 
-Modern EP mapping systems — such as CARTO (Biosense Webster), EnSite (Abbott), and Rhythmia (Boston Scientific) — combine real-time 3D catheter tracking with multi-channel signal recording to build these maps automatically during the procedure.
+Modern EP mapping systems — such as Rhythmia (Boston Scientific), CARTO (Biosense Webster), and EnSite (Abbott) — combine real-time 3D catheter tracking with multi-channel signal recording to build these maps automatically during the procedure.
 
 ---
 
@@ -53,9 +53,9 @@ Modern EP mapping systems — such as CARTO (Biosense Webster), EnSite (Abbott),
 A mapping catheter is a thin flexible tube (typically 2–4 mm in diameter) with multiple electrodes embedded near its tip. As the cardiologist maneuvers the catheter to touch different regions of the heart wall, each electrode records a local electrical signal.
 
 Types of mapping catheters:
+- **Basket catheters** (e.g. Rhythmia IntellaMap Orion): spherical cage with 64 electrodes that expands inside a chamber, enabling high-density mapping with thousands of points in just a few minutes.
+- **Multi-electrode catheters** (e.g. PentaRay, HD Grid): designs with 16–20 electrodes (PentaRay: 20 electrodes on 5 splines; HD Grid: 16 electrodes in a 4x4 array) that record over a small area.
 - **Point-by-point catheters** (e.g. CARTO SmartTouch): one contact point at a time, moved manually.
-- **Multi-electrode catheters** (e.g. PentaRay, HD Grid): fan-shaped or grid designs that record 16–64 electrodes simultaneously over a small area.
-- **Basket catheters** (e.g. Rhythmia IntellaMap Orion): spherical cage with 64 electrodes that expands inside a chamber, collecting thousands of points per beat.
 
 ### The Reference Catheter
 
@@ -202,9 +202,9 @@ The number of measurement points is **finite and constrained by the procedure**.
 
 | System | Technology | Typical points |
 |---|---|---|
+| Rhythmia (Boston Scientific) | Basket catheter, automated | 2,000–10,000 |
 | CARTO 3 (Biosense Webster) | Point-by-point, magnetic tracking | 100–500 |
 | EnSite Velocity (Abbott) | Non-contact or multi-electrode | 500–3,000 |
-| Rhythmia (Boston Scientific) | Basket catheter, automated | 2,000–10,000 |
 
 Meanwhile, the 3D **mesh surface** reconstructed from the same catheter movements may have **10,000–30,000 vertices**. Only a small fraction have real electrode measurements. The rest are interpolated.
 
@@ -214,18 +214,18 @@ Meanwhile, the 3D **mesh surface** reconstructed from the same catheter movement
 
 The cardiologist frequently revisits the same anatomical location — either intentionally (to confirm a reading) or because catheter movement is imprecise. How duplicate points are handled varies by system:
 
-### CARTO (point-by-point)
+### BSC (Rhythmia) / Abbott (EnSite) - High-Density
 
-- Accepts all points within a configurable spatial tolerance (typically 2–3 mm)
-- Displays all points, but uses the **most recent** or **highest-quality** point for the color map
-- Quality criteria: signal amplitude > threshold, catheter contact force > threshold (if force-sensing catheter), respiratory phase gating
+- Collects thousands of points automatically per beat (Rhythmia) or via multi-electrode sweeps.
+- Groups points into **spatial bins**.
+- Computes a **median or weighted average** LAT per bin.
+- Automatically rejects outliers using quality metrics (cycle length stability, morphology matching).
 
-### Rhythmia / EnSite (high-density)
+### CARTO (Point-by-Point)
 
-- Collects thousands of points automatically per beat
-- Groups points into **spatial bins**
-- Computes a **median or weighted average** LAT per bin
-- Automatically rejects outliers from ectopic beats or poor contact using beat-morphology matching
+- Accepts points within a configurable spatial tolerance (typically 2–3 mm).
+- Displays all points, but uses the **highest-quality** point for the color map.
+- Quality criteria: signal amplitude, catheter stability, contact force (if using force-sensing catheters), and respiratory phase gating.
 
 ### Why this matters
 

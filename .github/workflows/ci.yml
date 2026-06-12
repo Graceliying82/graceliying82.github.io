@@ -17,6 +17,8 @@ jobs:
     name: Code standards & build
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     strategy:
       matrix:

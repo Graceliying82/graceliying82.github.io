@@ -15,9 +15,9 @@ description: "Insights and lessons learned on vibe coding—effectively using AI
 
 ## Introduction
 
-Vibe coding has quickly become the go-to term for high-level, AI-assisted development. It’s that flow state where you focus on the intent and architecture while the AI handles the heavy lifting of implementation. It feels like magic at first, but as a project grows, just vibing isn't enough. Without a solid framework, you quickly run into technical debt, broken logic, and agents that seem more confused than helpful.
+Vibe coding—where you design the "vibe" and let the AI handle the implementation—feels like a superpower. But as a project scales, just vibing isn't enough. Without a solid framework, that flow state quickly turns into a mess of technical debt and architectural amnesia.
 
-In this post, I want to share some hard-earned lessons from recent projects—including a chaotic but successful hackathon—on how to actually harness AI for coding without losing your grip on the codebase.
+In this post, I’ll share the rules and success strategies I’ve developed for harnessing AI without losing control of the codebase.
 
 ## The Reality of Vibe Coding
 

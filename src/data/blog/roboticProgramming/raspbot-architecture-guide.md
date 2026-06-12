@@ -1,3 +1,17 @@
+---
+title: "Yahboom Raspbot V2 — Architecture, Hardware, and the Road to ROS2"
+author: Grace Li
+pubDatetime: 2026-06-12T07:30:00Z
+postSlug: raspbot-architecture-guide
+featured: false
+draft: true
+tags:
+  - robotics
+  - raspberry-pi
+  - python
+description: "A comprehensive guide to the Yahboom Raspbot V2 architecture, hardware registers, and how to take control of the robot beyond Jupyter notebooks."
+---
+
 # Yahboom Raspbot V2 — Architecture, Hardware, and the Road to ROS2
 
 > **Who this is for:** Who have the Raspbot V2 kit, have run a few Jupyter notebook demos, and want to understand exactly *what is happening* under the hood — and eventually take control without the notebook environment.
